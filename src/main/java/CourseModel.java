@@ -1,6 +1,6 @@
 //设计课程的格式
-import java.sql.*;
-public class CourseModel {
+import java.io.Serializable;
+public class CourseModel implements Serializable {
     String name;
     String teacher;
     int weekStart;//起始周
@@ -75,5 +75,25 @@ public class CourseModel {
     }
     public void printAll(){
         System.out.println(name+"+"+teacher+"+"+weekStart+"+"+weekLength+"+"+place+"+"+dayOfWeek+"+"+timeStart+"+"+timeLength);
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if(obj==null) {
+            return false;
+        }
+        if(this==obj) {
+            return true;
+        }
+        if(obj instanceof CourseModel) {
+            CourseModel t = (CourseModel)obj;
+            if(t.getName().equals(this.getName())&&t.getTeacher().equals(this.getTeacher())&&
+            t.weekStart==this.weekStart&&t.weekLength==this.weekLength&&t.getPlace().equals(this.getPlace())&&
+            t.dayOfWeek==this.dayOfWeek&&t.timeStart==this.timeStart&&t.timeLength==this.timeLength) {
+                return true;
+            }else {
+                return false;
+            }
+        }
+        return false;
     }
 }
